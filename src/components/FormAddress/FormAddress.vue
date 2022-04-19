@@ -25,7 +25,7 @@
 
     <!-- Город -->
     <div class="field" :class="{ error: v$.city.$errors.length }">
-      <label for="city">Город *</label>
+      <label for="city">Город <b>*</b></label>
       <input v-model="city" id="city" @blur="v$.city.$touch()">
       <div class="error-wrapper">
         <div class="input-errors error" v-for="error of v$.city.$errors" :key="error.$uid">
