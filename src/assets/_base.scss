@@ -182,27 +182,3 @@ h2 {
   }
 }
 
-.field {
-  display: flex;
-  flex-direction: column;
-}
-
-.field > label {
-  margin-bottom: 10px;
-  font-weight: 400;
-}
-
-.error-wrapper {
-  min-height: 30px;
-}
-
-.error-msg {
-  font-size: 0.8em;
-}
-
-.error { 
-  input, select {
-    border-color: red;
-  }
-  color: red;
-}

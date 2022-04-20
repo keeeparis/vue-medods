@@ -1,0 +1,15 @@
+.sex-wrap {
+  display: flex;
+  gap: 20px;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  user-select: none;
+  
+  input, label {
+    cursor: pointer;
+  }
+}
