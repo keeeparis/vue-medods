@@ -43,7 +43,7 @@
       v-model="phoneNumber"
       text='Номер телефона *'
       name='phoneNumber'
-      type='number'
+      type='tel'
     />
 
     <!-- Пол -->
@@ -106,7 +106,7 @@
 
 <script>
 import useVuelidate from '@vuelidate/core'
-import { required, helpers, minLength, maxLength } from "@vuelidate/validators"
+import { required, helpers, minLength, maxLength, numeric } from "@vuelidate/validators"
 
 import Field from '@/components/Field'
 import SelectItem from '@/components/SelectItem'
@@ -116,7 +116,7 @@ import { mustBeInPast, isStartsWithSeven } from '@/utils/validators'
 export default {
   setup () {
     return { 
-      v$: useVuelidate() 
+      v$: useVuelidate({ $autoDirty: true }) 
     }
   },
   components: { Field, SelectItem, MultiSelectItem },
@@ -155,6 +155,7 @@ export default {
         isStartsWithSeven: helpers.withMessage('Должен начинаться с цифры 7', isStartsWithSeven),
         minLength: helpers.withMessage('Должно быть не меньше 11 цифр', minLength(11)),
         maxLength: helpers.withMessage('Должно быть не больше 11 цифр', maxLength(11)),
+        numeric: helpers.withMessage('Допустимы только цифры', numeric),
       },
       clientsGroup: {
         required: helpers.withMessage('Выберите клиентов', required)

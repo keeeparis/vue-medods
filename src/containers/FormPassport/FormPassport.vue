@@ -23,6 +23,7 @@
 
     <!-- Номер -->
     <field 
+      :v='v$.passportId'
       v-model="passportId"
       text='Номер'
       name='passportId'
@@ -50,7 +51,7 @@
 
 <script>
 import useVuelidate from '@vuelidate/core'
-import { required, helpers } from "@vuelidate/validators"
+import { required, helpers, numeric } from "@vuelidate/validators"
 
 import Field from '@/components/Field'
 import SelectItem from '@/components/SelectItem'
@@ -59,7 +60,7 @@ import { mustBeInPast } from '@/utils/validators'
 export default {
   setup () {
     return { 
-      v$: useVuelidate()
+      v$: useVuelidate({ $autoDirty: true })
     }
   },
   components: { Field, SelectItem },
@@ -85,6 +86,9 @@ export default {
         required: helpers.withMessage('Введите дату выдачи', required),
         mustBeInPast: helpers.withMessage('Выберите дату в прошлом', mustBeInPast)
       },
+      passportId: {
+        numeric: helpers.withMessage('Допустимы только цифры', numeric)
+      }
     }
   },
   methods: {

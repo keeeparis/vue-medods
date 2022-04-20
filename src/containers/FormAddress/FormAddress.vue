@@ -4,10 +4,11 @@
 
     <!-- Индекс -->
     <field 
+      :v='v$.index'
       v-model="index"
       text='Индекс'
       name='index'
-      type='number'
+      type='text'
     />
 
     <!-- Страна -->
@@ -56,14 +57,14 @@
 
 <script>
 import useVuelidate from '@vuelidate/core'
-import { required, helpers } from "@vuelidate/validators"
+import { required, helpers, numeric } from "@vuelidate/validators"
 
 import Field from '@/components/Field'
 
 export default {
   setup () {
     return { 
-      v$: useVuelidate() 
+      v$: useVuelidate({ $autoDirty: true }) 
     }
   },
   components: { Field },
@@ -82,6 +83,9 @@ export default {
     return {
       city: { 
         required: helpers.withMessage('Введите город', required) 
+      },
+      index: {
+        numeric: helpers.withMessage('Допустимы только цифры', numeric) 
       }
     }
   },
