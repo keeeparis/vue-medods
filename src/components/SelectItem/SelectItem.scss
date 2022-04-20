@@ -8,7 +8,7 @@
   &::after {
     content: '';
     position: absolute;
-    top: 40%;
+    top: 25%;
     right: 5px;
     width: 10px;
     height: 10px;
@@ -49,6 +49,7 @@
   list-style: none;
   cursor: pointer;
   margin-bottom: 3px;
+  color: var(--color-text);
 
   &:hover {
     background-color: rgba(102, 102, 102, 0.212);
