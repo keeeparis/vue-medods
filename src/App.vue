@@ -1,45 +1,46 @@
+<template>
+  <div id="app">
+    <h1>Vue Форма</h1>
+    <form @submit.prevent="onSubmit">
+      <div class="wrapper">
+        <form-user ref="userRef" title='Пользователь' />
+        <form-address ref="addressRef" title='Адрес' />
+        <form-passport ref="passportRef" title='Паспорт' />
+      </div>
+
+      <button type="submit">Отправить</button>
+    </form>
+  </div>
+</template>
+
 <script>
-import FormUser from './components/FormUser'
-import FormAddress from './components/FormAddress'
-import FormPassport from './components/FormPassport'
+import FormUser from './containers/FormUser'
+import FormAddress from './containers/FormAddress'
+import FormPassport from './containers/FormPassport'
 
 export default {
   components: { FormUser, FormAddress, FormPassport },
   methods: {
     async onSubmit() {
-      const isUserPartCorrect = await this.$refs.userRef.v$.$validate()
-      const isAddressPartCorrect = await this.$refs.addressRef.v$.$validate()
-      const isPassportPartCorrect = await this.$refs.passportRef.v$.$validate()
+      const isUserPart = await this.$refs.userRef.validate()
+      const isAddressPart = await this.$refs.addressRef.validate()
+      const isPassportPart = await this.$refs.passportRef.validate()
 
       const isFormCorrect = 
-        isUserPartCorrect && 
-        isAddressPartCorrect &&
-        isPassportPartCorrect
+        isUserPart && 
+        isAddressPart &&
+        isPassportPart
       
       if (isFormCorrect) {
-        alert('Forma uspeshno otpravlena!')
+        alert('Forma uspeshno otpravlena! Результаты в console.log()')
+        console.log(isUserPart)
+        console.log(isAddressPart)
+        console.log(isPassportPart)
       }
     }
   }
 }
 </script>
-
-<template>
-  <div id="app">
-    <h1>Vue Форма</h1>
-    <form @submit.prevent="onSubmit">
-
-      <div class="wrapper">
-        <form-user ref="userRef" />
-        <form-address ref="addressRef" />
-        <form-passport ref="passportRef" />
-      </div>
-
-      <button type="submit">Отправить</button>
-
-    </form>
-  </div>
-</template>
 
 <style lang="scss">
 @import './assets';
